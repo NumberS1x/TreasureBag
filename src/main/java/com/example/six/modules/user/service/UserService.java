@@ -10,4 +10,5 @@ public interface UserService {
     void save(UserDTO userDTO);
     UserLoginDTO login(UserLoginReqDTO reqDTO);
     User getUser(String userName);
+    User getById(Integer id);
 }

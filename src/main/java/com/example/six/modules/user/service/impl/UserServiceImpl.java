@@ -11,6 +11,7 @@ import com.example.six.modules.user.dto.response.UserLoginDTO;
 import com.example.six.modules.user.entity.User;
 import com.example.six.modules.user.mapper.UserMapper;
 import com.example.six.modules.user.service.UserService;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,11 @@ public class UserServiceImpl implements UserService {
         user.setRealName(userDTO.getRealName());
         user.setPassword(MD5Util.MD5(userDTO.getPassword()));
         userMapper.addUser(user);
+    }
+
+    @Override
+    public User getById(Integer id){
+        return userMapper.queryUserById(id);
     }
 
     @Override

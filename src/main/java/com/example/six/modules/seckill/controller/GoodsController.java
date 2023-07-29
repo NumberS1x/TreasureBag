@@ -1,0 +1,33 @@
+package com.example.six.modules.seckill.controller;
+
+
+import com.example.six.core.annotion.UserLoginToken;
+import com.example.six.core.api.controller.BaseController;
+import com.example.six.core.utils.ApiRest;
+import com.example.six.modules.seckill.dto.GoodsDTO;
+import com.example.six.modules.seckill.dto.SeckillGoodsDTO;
+import com.example.six.modules.seckill.service.GoodsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/goods")
+public class GoodsController extends BaseController {
+    @Autowired
+    private GoodsService goodsService;
+
+    @PostMapping("/list")
+    ApiRest goodsList(){
+        List<GoodsDTO> goodsDTOList = goodsService.getAllGoods();
+        return super.success(goodsDTOList);
+    }
+
+    @GetMapping("/detail/{id}")
+    ApiRest goodsDetail(@PathVariable("id") Long id){
+        SeckillGoodsDTO seckillGoods = goodsService.getSeckillGoods(id);
+        return success(seckillGoods);
+    }
+
+}

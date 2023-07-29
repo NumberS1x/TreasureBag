@@ -16,7 +16,7 @@ import java.io.Serializable;
 
 
 @Data
-public class UserDTO implements Serializable {
+public class UserDTO {
     @ApiModelProperty(value = "用户名",required = true)
     private String userName;
 
