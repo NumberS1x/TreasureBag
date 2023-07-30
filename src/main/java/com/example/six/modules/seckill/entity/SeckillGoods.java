@@ -24,7 +24,7 @@ public class SeckillGoods implements Serializable {
 
     private Long goodsId;
 
-    private BigDecimal seckillPrice;
+    private BigDecimal seckilPrice;
 
     private Integer stockCount;
 

@@ -46,7 +46,7 @@ public class JedisUtil {
      * 将商品初始化在redis中
      */
     public static void setSeckillStock(Long goodsId,Integer stockCount){
-        jedis.set(goodsId.toString(),stockCount.toString(),new SetParams().ex(100));
+        jedis.set(goodsId.toString(),stockCount.toString(),new SetParams().ex(10000));
     }
 
     /**
@@ -54,7 +54,7 @@ public class JedisUtil {
      */
     public static Long getStock(Long goodsId){
         Long stock = Long.parseLong(jedis.get(goodsId.toString())) - 1;
-        jedis.set(goodsId.toString(),stock.toString(),new SetParams().ex(10));
+        jedis.set(goodsId.toString(),stock.toString(),new SetParams().ex(10000));
         return stock;
     }
 
@@ -115,6 +115,13 @@ public class JedisUtil {
         } else {
             return JSON.toJavaObject(JSON.parseObject(str), clazz);
         }
+    }
+
+    /**
+     * 判断秒杀商品是否还存在
+     */
+    public static boolean goodsExist(Long goodsId){
+        return jedis.exists(goodsId.toString());
     }
 
 

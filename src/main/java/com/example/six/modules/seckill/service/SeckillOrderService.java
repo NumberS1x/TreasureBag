@@ -1,5 +1,6 @@
 package com.example.six.modules.seckill.service;
 
+import com.example.six.modules.seckill.dto.SeckillOrderDTO;
 import com.example.six.modules.seckill.entity.OrderInfo;
 import com.example.six.modules.seckill.entity.SeckillGoods;
 import com.example.six.modules.seckill.entity.SeckillOrder;
@@ -11,4 +12,6 @@ public interface SeckillOrderService {
     OrderInfo insert(User user, SeckillGoods goods);
     String createPath(Long userId,Long goodsId);
     boolean verifyPath(Long userId,Long goodsId,String path);
+    long getSckillResult(Integer userId,Long goodsId);
+    SeckillOrderDTO getOrderInfo(Long orderId);
 }

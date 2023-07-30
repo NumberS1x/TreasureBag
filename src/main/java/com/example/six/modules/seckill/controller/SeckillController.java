@@ -17,6 +17,7 @@ import com.example.six.modules.user.service.UserService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.swagger.schema.ApiModelTypeNameProvider;
 
 import java.util.List;
 
@@ -55,14 +56,14 @@ public class SeckillController extends BaseController implements InitializingBea
 
 
 
-
+//获取秒杀路径
     @GetMapping("/path")
     public ApiRest getSeckillPath(@RequestParam("userId") Long userId,
                                   @RequestParam("goodsId") Long goodsId){
         String path = seckillOrderService.createPath(userId,goodsId);
         return super.success(path);
     }
-
+//执行秒杀
     @PostMapping("/{path}/seckill")
     public ApiRest doSeckill(@PathVariable("path") String path,
                              @RequestParam("goodsId") Long goodsId,
@@ -94,5 +95,13 @@ public class SeckillController extends BaseController implements InitializingBea
         return super.success();
     }
 
+//获取秒杀结果
+    @GetMapping("/result")
+    public ApiRest getResult(@RequestParam("goodsId") Long goodsId,
+                             @RequestParam("userId") Long userId){
+        Integer id = Integer.valueOf(String.valueOf(userId));
+        Long result = seckillOrderService.getSckillResult(id,goodsId);
+        return super.success(result);
+    }
 
 }

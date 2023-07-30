@@ -1,18 +1,18 @@
 package com.example.six.core.mq;
 
 import com.example.six.core.utils.JedisUtil;
-import com.example.six.modules.seckill.dto.SeckillGoodsDTO;
-import com.example.six.modules.seckill.entity.Goods;
 import com.example.six.modules.seckill.entity.SeckillGoods;
 import com.example.six.modules.seckill.entity.SeckillOrder;
 import com.example.six.modules.seckill.service.GoodsService;
 import com.example.six.modules.seckill.service.SeckillOrderService;
 import com.example.six.modules.user.entity.User;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class MQReceiver {
@@ -37,6 +37,7 @@ public class MQReceiver {
 //               获取秒杀商品的详情信息
         SeckillGoods seckillGoods = goodsService.getSeckillGoodsByGoodsId(goodsId);
         int stock = seckillGoods.getStockCount();
+        log.info(seckillGoods.toString());
         if (stock <= 0) {
             return;
         }

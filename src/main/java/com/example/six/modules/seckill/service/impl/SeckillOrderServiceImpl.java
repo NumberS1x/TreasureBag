@@ -3,6 +3,7 @@ package com.example.six.modules.seckill.service.impl;
 import com.example.six.core.exception.ServiceException;
 import com.example.six.core.utils.JedisUtil;
 import com.example.six.core.utils.MD5Util;
+import com.example.six.modules.seckill.dto.SeckillOrderDTO;
 import com.example.six.modules.seckill.entity.Goods;
 import com.example.six.modules.seckill.entity.OrderInfo;
 import com.example.six.modules.seckill.entity.SeckillGoods;
@@ -46,7 +47,7 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
             orderInfo.setGoodsCount(1);
             orderInfo.setGoodsId(goods.getId());
             orderInfo.setGoodsName(goodsService.getGoodsById(goods.getGoodsId()).getGoodsName());
-            orderInfo.setGoodsPrice(goods.getSeckillPrice());
+            orderInfo.setGoodsPrice(goods.getSeckilPrice());
             orderInfo.setOrderChannel(1);
             orderInfo.setStatus(0);
             orderInfo.setUserId((long) user.getId());
@@ -74,4 +75,36 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
     public boolean verifyPath(Long userId,Long goodsId,String path){
         return JedisUtil.verifyPath(path,userId,goodsId);
     }
+
+    @Override
+    public long getSckillResult(Integer userId,Long goodsId){
+        SeckillOrder seckillOrder = getSeckillOrderByUserIdGoodsId(userId,goodsId);
+        if (seckillOrder != null){
+            return seckillOrder.getOrderId();
+        }else{
+            boolean isNotOver = getGoodOver(goodsId);
+            if (isNotOver){
+                return -1;
+            }
+            return 0;
+        }
+    }
+
+    @Override
+    public SeckillOrderDTO getOrderInfo(Long orderId){
+        SeckillOrderDTO seckillOrderDTO = orderInfoMapper.getOrderInfo(orderId);
+        if (seckillOrderDTO == null){
+            throw new ServiceException(1,"订单不存在");
+        }
+        String img = orderInfoMapper.getImg(orderId);
+        seckillOrderDTO.setGoodsImg(img);
+        return seckillOrderDTO;
+    }
+
+
+
+    public boolean getGoodOver(Long goodsId){
+        return JedisUtil.goodsExist(goodsId);
+    }
+
 }

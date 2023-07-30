@@ -17,7 +17,7 @@ public interface SeckillGoodsMapper {
     @Select("select * from seckill_goods")
     List<SeckillGoods> getAllSeckillGoods();
 
-    @Update("update seckill_goods set stock_count = stock_count - 1 where goods_id = #{goodsId}")
+    @Update("UPDATE seckill_goods SET stock_count = stock_count-1 WHERE goods_id = #{goodsId}")
     int update(Long goodsId);
 
 }

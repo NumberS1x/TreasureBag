@@ -26,6 +26,9 @@ public class SeckillGoodsDTO {
     @ApiModelProperty(value = "商品价格",required = true)
     private BigDecimal goodsPrice;
 
+    @ApiModelProperty(value = "秒杀价格",required = true)
+    private BigDecimal seckilPrice;
+
     @ApiModelProperty(value = "秒杀开始时间",required = true)
     private Date startDate;
 
