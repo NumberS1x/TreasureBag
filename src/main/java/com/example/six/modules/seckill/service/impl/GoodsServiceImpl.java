@@ -28,14 +28,9 @@ public class GoodsServiceImpl implements GoodsService {
 //    获取秒杀商品的列表
     @Override
     public List<GoodsDTO> getAllGoods(){
-        List<GoodsDTO> goodsDTOList = new ArrayList<GoodsDTO>();
-        List<Goods> goodsList = goodsMapper.getAllGoods();
-        for(Goods i: goodsList){
-            GoodsDTO goodsDTO = new GoodsDTO();
-            BeanMapper.copy(i,goodsDTO);
-            goodsDTOList.add(goodsDTO);
-        }
-        return goodsDTOList;
+        List<GoodsDTO> goodsList = goodsMapper.getAllGoods();
+
+        return goodsList;
     }
 
 //    获取想要秒杀商品的详细信息(前端)

@@ -21,4 +21,7 @@ public class GoodsDTO {
 
     @ApiModelProperty(value = "商品价格",required = true)
     private BigDecimal goodsPrice;
+
+    @ApiModelProperty(value = "商品秒杀价格",required = true)
+    private BigDecimal seckilPrice;
 }
