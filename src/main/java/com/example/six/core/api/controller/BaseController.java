@@ -147,4 +147,6 @@ public class BaseController {
         ApiRest<T> apiRest = message(ex.getCode(), ex.getMsg(), null);
         return apiRest;
     }
+
+    private String test = "test";
 }
