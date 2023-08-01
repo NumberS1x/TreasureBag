@@ -13,21 +13,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@UserLoginToken
+
 @RestController
 @RequestMapping("/goods")
 public class GoodsController extends BaseController {
     @Autowired
     private GoodsService goodsService;
 
-
+    @UserLoginToken
     @GetMapping("/list")
     ApiRest goodsList(){
         List<GoodsDTO> goodsDTOList = goodsService.getAllGoods();
         return super.success(goodsDTOList);
     }
 
-
+    @UserLoginToken
     @GetMapping("/detail/{id}")
     ApiRest goodsDetail(@PathVariable("id") Long id){
         SeckillGoodsDTO seckillGoods = goodsService.getSeckillGoods(id);

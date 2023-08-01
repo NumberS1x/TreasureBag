@@ -1,6 +1,7 @@
 package com.example.six.modules.seckill.controller;
 
 
+import com.example.six.core.annotion.UserLoginToken;
 import com.example.six.core.api.controller.BaseController;
 import com.example.six.core.mq.MQSender;
 import com.example.six.core.mq.SeckillMessage;
@@ -57,6 +58,7 @@ public class SeckillController extends BaseController implements InitializingBea
 
 
 //获取秒杀路径
+    @UserLoginToken
     @GetMapping("/path")
     public ApiRest getSeckillPath(@RequestParam("userId") Long userId,
                                   @RequestParam("goodsId") Long goodsId){
@@ -64,12 +66,14 @@ public class SeckillController extends BaseController implements InitializingBea
         return super.success(path);
     }
 //执行秒杀
+    @UserLoginToken
     @PostMapping("/{path}/seckill")
     public ApiRest doSeckill(@PathVariable("path") String path,
                              @RequestParam("goodsId") Long goodsId,
                              @RequestParam("userId") Long userId){
 
         //验证path
+        path = path.replace("'","");
         boolean check = seckillOrderService.verifyPath(userId,goodsId,path);
         if (!check){
             return super.failure("路径不存在！");
@@ -96,6 +100,7 @@ public class SeckillController extends BaseController implements InitializingBea
     }
 
 //获取秒杀结果
+    @UserLoginToken
     @GetMapping("/result")
     public ApiRest getResult(@RequestParam("goodsId") Long goodsId,
                              @RequestParam("userId") Long userId){

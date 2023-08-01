@@ -65,10 +65,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                     throw new AuthenticationException("用户不存在，请重新登录");
                 }
                 //验证是否过期
-                try {
-                    JedisUtil.verifyToken(token);
-                }catch (ServiceException e){
-                    throw new ServiceException(401,"验证码已经过期");
+                if (!JedisUtil.verifyToken(token)){
+                    throw new ServiceException(401,"token已经过期！");
                 }
                 // 验证 token
                 try {

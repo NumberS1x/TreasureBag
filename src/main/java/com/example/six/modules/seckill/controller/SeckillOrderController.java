@@ -1,6 +1,7 @@
 package com.example.six.modules.seckill.controller;
 
 
+import com.example.six.core.annotion.UserLoginToken;
 import com.example.six.core.api.controller.BaseController;
 import com.example.six.core.utils.ApiRest;
 import com.example.six.modules.seckill.dto.SeckillOrderDTO;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@UserLoginToken
 @RestController
 @RequestMapping("/order")
 public class SeckillOrderController extends BaseController {
@@ -18,7 +20,7 @@ public class SeckillOrderController extends BaseController {
     private SeckillOrderService seckillOrderService;
 
 
-
+    @UserLoginToken
     @GetMapping("/detail")
     public ApiRest orderInfo(@RequestParam("orderId") Long orderId){
         SeckillOrderDTO seckillOrderDTO = seckillOrderService.getOrderInfo(orderId);

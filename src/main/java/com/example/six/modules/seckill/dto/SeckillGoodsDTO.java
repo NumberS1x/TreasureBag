@@ -38,6 +38,9 @@ public class SeckillGoodsDTO {
     @ApiModelProperty(value = "商品库存",required = true)
     private Integer goodsStock;
 
+    @ApiModelProperty(value = "库存数量",required = true)
+    private Integer stockCount;
+
     @ApiModelProperty(value = "创建时间",required = true)
     private Date createDate;
 
