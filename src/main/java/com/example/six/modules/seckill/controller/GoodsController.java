@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/goods")
+@RequestMapping("/api/goods")
 public class GoodsController extends BaseController {
     @Autowired
     private GoodsService goodsService;

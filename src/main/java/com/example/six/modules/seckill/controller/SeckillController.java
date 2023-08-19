@@ -23,7 +23,7 @@ import springfox.documentation.swagger.schema.ApiModelTypeNameProvider;
 import java.util.List;
 
 @RestController
-@RequestMapping("/seckill")
+@RequestMapping("/api/seckill")
 public class SeckillController extends BaseController implements InitializingBean {
 
     @Autowired

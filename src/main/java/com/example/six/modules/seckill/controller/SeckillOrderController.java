@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @UserLoginToken
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/api/order")
 public class SeckillOrderController extends BaseController {
     @Autowired
     private SeckillOrderService seckillOrderService;
