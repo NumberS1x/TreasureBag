@@ -2,6 +2,7 @@ package com.example.six.modules.user.controller;
 
 
 import com.example.six.core.annotion.UserLoginToken;
+import com.example.six.core.annotion.WebLog;
 import com.example.six.core.api.controller.BaseController;
 import com.example.six.core.utils.ApiRest;
 import com.example.six.modules.user.dto.UserDTO;
@@ -23,6 +24,7 @@ public class UserController extends BaseController {
         return super.success();
     }
 
+    @WebLog("用户登录")
     @PostMapping("/login")
     public ApiRest login(@RequestBody UserLoginReqDTO reqDTO){
         UserLoginDTO respDTO = userService.login(reqDTO);

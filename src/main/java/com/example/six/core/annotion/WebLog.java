@@ -1,10 +1,7 @@
 package com.example.six.core.annotion;
 
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * AOP日志功能
@@ -12,6 +9,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.TYPE,ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
+@Documented
 public @interface WebLog {
-    boolean required() default true;
+    String value() default "";
 }

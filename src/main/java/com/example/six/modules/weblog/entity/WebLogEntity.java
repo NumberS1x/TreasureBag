@@ -13,12 +13,14 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class WebLog implements Serializable {
+public class WebLogEntity implements Serializable {
 
     private Integer id;
     private String userName;
     private String operation;
-    private String method;
+    private String httpMethod;
+    private String httpUrl;
+    private String classMethod;
     private String param;
     private String ip;
     private Date createTime;
