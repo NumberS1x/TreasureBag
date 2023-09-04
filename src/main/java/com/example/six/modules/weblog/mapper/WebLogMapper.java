@@ -13,6 +13,6 @@ public interface WebLogMapper {
     @Insert("insert into web_log values(#{id},#{userName},#{operation},#{httpMethod},#{httpUrl},#{classMethod},#{param},#{ip},#{createTime})")
     void insert(WebLogEntity webLogEntity);
 
-    @Select("select * from web_log")
+    @Select("select * from web_log order by id desc")
     List<WebLogEntity> getLogList();
 }

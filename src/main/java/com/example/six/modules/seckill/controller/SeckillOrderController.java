@@ -2,6 +2,7 @@ package com.example.six.modules.seckill.controller;
 
 
 import com.example.six.core.annotion.UserLoginToken;
+import com.example.six.core.annotion.WebLog;
 import com.example.six.core.api.controller.BaseController;
 import com.example.six.core.utils.ApiRest;
 import com.example.six.modules.seckill.dto.SeckillOrderDTO;
@@ -20,6 +21,7 @@ public class SeckillOrderController extends BaseController {
     private SeckillOrderService seckillOrderService;
 
 
+    @WebLog("查询秒杀订单")
     @UserLoginToken
     @GetMapping("/detail")
     public ApiRest orderInfo(@RequestParam("orderId") Long orderId){

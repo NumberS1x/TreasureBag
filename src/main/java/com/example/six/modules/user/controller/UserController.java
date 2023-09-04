@@ -31,11 +31,6 @@ public class UserController extends BaseController {
         return super.success(respDTO);
     }
 
-    @UserLoginToken
-    @RequestMapping(value = "/getMessage",method = RequestMethod.GET)
-    public  String getMessage(){
-        return "验证成功！";
-    }
 
 
 
