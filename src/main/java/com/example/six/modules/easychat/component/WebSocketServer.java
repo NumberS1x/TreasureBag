@@ -21,7 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author geeksix
  * @create 2023/9/4 17:58
  */
-@ServerEndpoint("/easychat/{username}")
+@ServerEndpoint(value = "/easychat/{username}")
 @Component
 public class WebSocketServer {
     private static final Logger log = LoggerFactory.getLogger(WebSocketServer.class);
